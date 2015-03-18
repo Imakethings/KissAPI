@@ -15,7 +15,7 @@ except ImportError as e:
     print e, Die(0)
 
 class Anime:
-    def exists(self, *args):
+    def exists(self, args):
         ''' Validate the existence of all given Anime. '''
 
         # Define the default path to extend.
@@ -72,9 +72,13 @@ class Anime:
         # Make a lambda to remove the tail dash.
         tail_dash = lambda: dashed[: len(dashed) - 1] if dashed.endswith('-') else dashed
 
+        # If there is only argument. Transform it to a list as we go over all the arguments.
+        # If we were not to do this. It would attempt to connect to every character.
+        if type(args) in [unicode, str]: args = [args]
+        
         # Go over all the arguments passed the exists method.
         for argument in args:
-
+            
             # Make a string of all the characters.
             # To prevent any further confusion the string is converted to lowercase.
             dashed = ''.join(list(validate(argument))).lower()
@@ -131,10 +135,15 @@ class Anime:
         except Exception as err:
             print err
             Die(1)
-       
+
+
         # Format the title to remove excess whitespacing and new lines.
-        title = HTML.title.string.split('\n')[1]
-        
+        try:
+            title = HTML.title.string.split('\n')[1]
+
+        except IndexError:
+            return 'The resource cannot be found.'
+
         # This means there is only one result.
         # It is being handeled as the primary result straight away
         if title != 'Find anime':
@@ -147,8 +156,7 @@ class Anime:
             
             # Handle the no results were found exception.
             except IndexError:
-                print "Your query did not match any results."
-                Die(1)
+                return "Your query did not match any results."
 
             # Depending on the set value determine the amount of results.
             # The default is 0, which means all.
@@ -168,5 +176,41 @@ class Anime:
                 except:
                     pass
               
-        # Do not return list format with 1 entry.
         return RESULTS[0] if len(anchors) <= 1 else RESULTS
+
+    def index(self, query):
+        pass
+        ### INDEXING ALGORITHM FOR TOMORROW!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
