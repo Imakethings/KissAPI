@@ -3,23 +3,14 @@
 Unofficial http://www.kissanime.com & http://www.kissmanga.com API.
 
 * March 20th
-
---------
-
-For the time being, there is not a official ```pip``` package yet due to this
-still being in development, expect this too change on a short base. Most parts
-of the API are already functional and can be used by installing the module by hand.
+> For the time being, there is not a official ```pip``` package yet due to this
+> still being in development, expect this too change on a short base. Most parts
+> of the API are already functional and can be used by installing the module by hand.
 
 --------
 
 * March 21th
-
---------
-
-Updated README.md to contain all the available methods.
-
---------
-
+> Updated README.md to contain all the available methods.
 
 This file contains the methods regarding the anime site ```anime.py```.
 This file contains the methods regarding the manga site ```manga.py```.
