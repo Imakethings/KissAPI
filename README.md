@@ -19,7 +19,9 @@ Assuming you place the file in a (```/lib/anime.py```), ```from lib.anime import
 
 *If you receive no error you should be good to go.
 
-```.validate(string)```
+--------
+
+(```.validate(string)```)
 
 ```
 # This one is easily detected and validated.
