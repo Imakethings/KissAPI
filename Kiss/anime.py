@@ -31,7 +31,7 @@ class Anime:
         self.shorten    = lambda x: ISGDShortener().shorten(x)[0]
         
         # Removes a tailing dash when one is found.
-        self.tail_dash  = lambda x: x[: len(x) - 1] if x.endswith('-') else x
+        self.dashed     = lambda x: x[: len(x) - 1] if x.endswith('-') else x[1:] if x.startswith('-') else x
         
         # Attempt to make a connection.
         self.connect    = lambda x,y: False if requests.get(x + y).status_code != 200 else True
@@ -90,25 +90,22 @@ class Anime:
                     # When itterating this can be used to prevent double '--' dashes.
                     PREVIOUS = '-'
 
-        validated = self.tail_dash(''.join(list(validate(argument))))
+        validated = self.dashed(''.join(list(validate(argument))))
 
         # Eventhough it is False there is a chance we can fix it anyway.
         if not self.connect(self.ANIME_URL, validated):
                     
-            # Maintain the original for whenever we fail to fix it.
-            original = validated
-                    
             try:
                 # We attempt to fix it by removing this value and then retry.
                 if 'sub' in validated:
-                    validated = self.tail_dash(validated.replace('sub', ''))
+                    validated = self.dashed(validated.replace('sub', ''))
                 
                 if 'dub' in validated:
-                    validated = self.tail_dash(validated.replace('dub', ''))
+                    validated = self.dashed(validated.replace('dub', ''))
                 
                 # We tried our bests.
                 if not self.connect(self.ANIME_URL, validated):
-                    validated = original       
+                    validated = False
                 
             # Pass off any not working attempt. Worth a shot.
             except:
@@ -129,6 +126,10 @@ class Anime:
             # Whenever we are not performing a search.
             if title != 'Find anime':
                 raise ValueError 
+
+            # When the listing class is not found.
+            if len(listing) == 0:
+                raise ValueError
  
         # Only one anime is found.
         except ValueError:
@@ -140,7 +141,7 @@ class Anime:
         
         def search(argument, amount):
             ''''''
-    
+
             # Depending on the set value determine the amount of results.
             # The default is 0, which means all.
             anchors = listing.find_all("a") if amount == 0 else listing.find_all("a")[:int(amount)]
@@ -192,21 +193,3 @@ class Anime:
             return False
         
         return b64decode(source) if not shorten else self.shorten(b64decode(source))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

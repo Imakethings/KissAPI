@@ -3,8 +3,6 @@
 
 ###### Unofficial http://www.kissanime.com & http://www.kissmanga.com API.
 
---------
-
 > **March 20th**,
 > For the time being, there is not a official ```pip``` package yet due to this
 > still being in development, expect this too change on a short base. Most parts
@@ -15,8 +13,6 @@
 > **March 21th**,
 > Updated README.md to contain all the available methods.
 
---------
-
 This file contains the methods regarding the anime site ```anime.py```.
 This file contains the methods regarding the manga site ```manga.py```.
 
@@ -25,7 +21,7 @@ This file contains the methods regarding the manga site ```manga.py```.
 Assuming you place the file in your root (```/anime.py```), ```from anime import Anime```.
 Assuming you place the file in a (```/lib/anime.py```), ```from lib.anime import Anime```.
 
-*If you receive no error you should be good to go.
+*If you receive no error you should be good to go.*
 
 --------
 
