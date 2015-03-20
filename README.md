@@ -1,7 +1,7 @@
 
 # KissAPI 
 
-### Unofficial http://www.kissanime.com & http://www.kissmanga.com API.
+###### Unofficial http://www.kissanime.com & http://www.kissmanga.com API.
 
 --------
 
